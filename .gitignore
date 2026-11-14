@@ -1,0 +1,4 @@
+game/Binaries/
+game/Build
+game/.clang-format
+game/compile_commands.json

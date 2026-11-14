@@ -1,8 +1,13 @@
 #include <raylib.h>
+#include <stats.h>
 #include <stdbool.h>
 
+Texture *stats_card = 0;
 void setup(void) {
+    SetTraceLogLevel(LOG_WARNING);
     InitWindow(800, 600, "SnakeGame");
+    init_stats();
+    stats_card = GetStatsCard(); // create once
 
     // InitAudioDevice();
 
@@ -10,8 +15,22 @@ void setup(void) {
 }
 
 void loop(void) {
+    BeginDrawing();
     ClearBackground(RAYWHITE);
-    DrawRectangle(200, 100, 400, 400, RED);
+
+    DrawTexture(*stats_card, 0, 0, WHITE);
+
+    Rectangle btn = (Rectangle){750, 550, 50, 50};
+    DrawRectangleRec(btn, BLACK);
+
+    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) &&
+        CheckCollisionPointRec(GetMousePosition(), btn)) {
+        next_day();
+        UnloadTexture(*stats_card);
+        stats_card = GetStatsCard();
+    }
+
+    EndDrawing();
 }
 
 void final(void) { CloseWindow(); }
@@ -25,6 +44,6 @@ int main() {
         loop();
         EndDrawing();
     }
-             
+
     final();
 }
