@@ -7,6 +7,8 @@ make linux
 make windows
 ```
 
+A linux machine is suggested for compilation
+
 # Credits
 ## License
 The structure of this project, referring to the folder organization, makefile, and Source/main.c
