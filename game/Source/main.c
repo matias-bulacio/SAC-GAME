@@ -26,17 +26,12 @@ void loop(void) {
 
     DrawTexture(*stats_card, 0, 0, WHITE);
 
-    Rectangle btn = (Rectangle){750, 550, 50, 50};
-    DrawRectangleRec(btn, BLACK);
+    if (next_card || event_idx == -1) { // Roll card
+        if (event_idx != -1)
+            next_day();
 
-    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) &&
-        CheckCollisionPointRec(GetMousePosition(), btn)) {
-        next_day();
         UnloadTexture(*stats_card);
         stats_card = GetStatsCard();
-    }
-
-    if (next_card || event_idx == -1) { // Roll card
         event_idx = GetRandomValue(0, EVENT_LIST_COUNT - 1);
         if (event_card != NULL)
             UnloadTexture(*event_card);

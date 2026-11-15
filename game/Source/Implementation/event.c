@@ -616,7 +616,8 @@ Texture *draw_event_card(size_t idx) {
     /* Replace with your own base card path */
     const char *basePath = "assets/event_card.png";
 
-    Image base = LoadImage(basePath);
+    Image base = LoadImage(TextFormat("%s%s%s", GetApplicationDirectory(),
+                                      "Resources/", basePath));
     if (base.data == NULL) {
         /* Fallback blank card */
         base = GenImageColor(CARD_W, CARD_H, RED);

@@ -28,6 +28,8 @@ windows: Binaries/Windows/game.exe
 
 Binaries/Linux/game: $(OBJECTS_LINUX) | Binaries/Linux
 	$(LINUX_CC) -o $@ $^ $(LINUX_LIBS)
+	rm -rf Binaries/Linux/Resources
+	cp -r Resources Binaries/Linux/Resources
 
 Build/Linux/%.o: %.c | Build/Linux
 	mkdir -p $(dir $@)
@@ -35,6 +37,8 @@ Build/Linux/%.o: %.c | Build/Linux
 
 Binaries/Windows/game.exe: $(OBJECTS_WINDOWS) | Binaries/Windows
 	$(WINDOWS_CC) -o $@ $^ $(WINDOWS_LIBS)
+	rm -rf Binaries/Linux/Resources
+	cp -r Resources Binaries/Windows/Resources
 
 Build/Windows/%.o: %.c | Build/Windows
 	mkdir -p $(dir $@)
