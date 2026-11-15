@@ -6,13 +6,15 @@
 #include <time.h>
 
 Texture *stats_card = 0;
+Texture bg;
 void setup(void) {
-    SetTraceLogLevel(LOG_WARNING);
-    InitWindow(800, 600, "SnakeGame");
+    SetTraceLogLevel(LOG_ERROR);
+    InitWindow(520, 430, "Mission Trainer Simulator");
     init_stats();
     SetRandomSeed(time(NULL));
     stats_card = GetStatsCard(); // create once
-
+    bg = LoadTextureFromImage(LoadImage(
+        TextFormat("%sResources/Images/fondo.png", GetApplicationDirectory())));
     // InitAudioDevice();
 
     // Load resources
@@ -23,6 +25,7 @@ Texture *event_card = NULL;
 bool next_card = true;
 void loop(void) {
     ClearBackground(RAYWHITE);
+    DrawTexture(bg, 180, 0, WHITE);
 
     DrawTexture(*stats_card, 0, 0, WHITE);
 
