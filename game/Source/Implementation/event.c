@@ -140,7 +140,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
-        .card_path = NULL,
+        .card_path = "Images/CART16.png",
         .type = EVENT_CREATION,
         .as.creation =
             {
@@ -347,7 +347,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
-        .card_path = NULL,
+        .card_path = "Images/CART2.png",
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -425,7 +425,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
 
     // Problems
     {
-        .card_path = NULL,
+        .card_path = "Images/CART19.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -465,7 +465,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
-        .card_path = NULL,
+        .card_path = "Images/CART17.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -655,6 +655,8 @@ Texture *draw_event_card(size_t idx) {
     switch (event_list[idx].type) {
     case EVENT_ACTION:
         title = action_names[event_list[idx].as.action.action_name_index];
+        c1 = "Perform";
+        c2 = "Skip";
         break;
     case EVENT_PRROBLEM:
         title = problem_names[event_list[idx].as.problem.problem_name_index];
@@ -681,8 +683,7 @@ Texture *draw_event_card(size_t idx) {
     Rectangle b1 = {22, 290, CHOICE_W, CHOICE_H};
     Rectangle b2 = {22, 332, CHOICE_W, CHOICE_H};
 
-    if (event_list[idx].type == EVENT_CREATION ||
-        event_list[idx].type == EVENT_PRROBLEM) {
+    if (c1 != NULL) {
         DrawChoiceBox(b1, c1, false);
     }
     DrawChoiceBox(b2, c2, false);
@@ -731,8 +732,10 @@ bool input_loop_event_card(size_t idx, Vector2 pos) {
             consecuences = e.as.incident.consecuences;
         break;
     case EVENT_ACTION:
-        if (CheckCollisionPointRec(m, b2))
+        if (CheckCollisionPointRec(m, b1))
             consecuences = e.as.action.consecuences;
+        if (CheckCollisionPointRec(m, b2))
+            consecuences = (struct consecuence[3]){{0, 0}, {0, 0}, {0, 0}};
         break;
     }
 after_input:
