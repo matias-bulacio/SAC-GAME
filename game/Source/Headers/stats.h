@@ -5,6 +5,20 @@
 // Time stats
 extern int16_t current_day;
 
+enum stat_kinds {
+	STAT_NONE,
+	STAT_HEALTH,
+	STAT_SLEEP,
+	STAT_RAD_SHIELD,
+	STAT_POWER_STORAGE,
+	STAT_FOOD_STORAGE,
+	STAT_POWER_PRODUCTION,
+	STAT_FOOD_PRODUCTION,
+	STAT_RAD_SHIELD_CONSUMTION,
+	STAT_POWER_CONSUMTION,
+	STAT_FOOD_CONSUMTION,
+};
+
 // Human stats
 struct player_stats {
     int8_t health;
