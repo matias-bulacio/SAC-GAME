@@ -54,6 +54,7 @@ struct event {
 		struct event_problem problem;
 		struct event_incident incident;
 	} as;
+	const char *card_path;
 };
 
 void apply_consecuence(struct consecuence);

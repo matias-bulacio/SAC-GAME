@@ -93,6 +93,7 @@ const char *action_names[] = {
 struct event event_list[EVENT_LIST_COUNT] = {
     // Creations
     {
+        .card_path = "Images/CART4.png",
         .type = EVENT_CREATION,
         .as.creation =
             {
@@ -139,6 +140,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = NULL,
         .type = EVENT_CREATION,
         .as.creation =
             {
@@ -187,6 +189,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART6.png",
         .type = EVENT_CREATION,
         .as.creation =
             {
@@ -233,6 +236,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
 
     // Actions
     {
+        .card_path = "Images/CART13.png",
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -269,6 +273,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART12.png",
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -305,6 +310,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART10.png",
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -341,6 +347,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = NULL,
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -378,6 +385,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART14.png",
         .type = EVENT_ACTION,
         .as.action =
             {
@@ -417,6 +425,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
 
     // Problems
     {
+        .card_path = NULL,
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -436,6 +445,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART8.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -455,6 +465,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = NULL,
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -474,6 +485,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART7.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -493,6 +505,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART8.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -512,6 +525,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
             },
     },
     {
+        .card_path = "Images/CART14.png",
         .type = EVENT_PRROBLEM,
         .as.problem =
             {
@@ -538,7 +552,7 @@ struct event event_list[EVENT_LIST_COUNT] = {
 #define TOP_IMG_X 14
 #define TOP_IMG_Y 0
 #define TOP_IMG_W 267
-#define TOP_IMG_H 140
+#define TOP_IMG_H 180
 
 #define CARD_MARGIN 12
 #define TEXT_X 18
@@ -614,7 +628,8 @@ static void DrawChoiceBox(Rectangle r, const char *text, bool hover) {
 static Texture card_texture;
 Texture *draw_event_card(size_t idx) {
     /* Replace with your own base card path */
-    const char *basePath = "assets/event_card.png";
+    struct event e = event_list[idx];
+    const char *basePath = e.card_path;
 
     Image base = LoadImage(TextFormat("%s%s%s", GetApplicationDirectory(),
                                       "Resources/", basePath));
@@ -661,7 +676,7 @@ Texture *draw_event_card(size_t idx) {
     }
 
     // Don't draw over the top image area (0..140)
-    DrawWrappedText(title, TEXT_X, 150, 20, 2, TEXT_W, BLACK);
+    DrawWrappedText(title, TEXT_X, TOP_IMG_H + 10, 20, 2, TEXT_W, WHITE);
 
     Rectangle b1 = {22, 290, CHOICE_W, CHOICE_H};
     Rectangle b2 = {22, 332, CHOICE_W, CHOICE_H};
