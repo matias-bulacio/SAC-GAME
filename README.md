@@ -1,5 +1,5 @@
 # Compilation
-To compile this project, execute `make <platform>`
+To compile this project, execute `make <platform>` in the directory "game/"
 
 For example
 ```bash
@@ -12,10 +12,11 @@ A linux machine is suggested for compilation
 # Credits
 ## License
 The structure of this project, referring to the folder organization, makefile, and Source/main.c
-is based on the following commit of a different project, to the which I am the author.
+is based on the following commit of a different project, to the which I (matias-bulacio) am the author.
 
 https://github.com/matias-bulacio/TetrisShoot/tree/1f6408181486a7f96a8eb6e23ea67ca7746369ac
 
+Also, dryan-vallik is my second account.
 
 ## AI assisted creation
 Artificial intelligence was used in some code creation and image generation.
